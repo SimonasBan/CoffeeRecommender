@@ -6,6 +6,7 @@ import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers
 import pickle
+import os
 # -------
 df = pd.read_csv('arabica_data_cleaned.csv')
 df.drop(df.columns[0], axis=1, inplace=True)
@@ -69,9 +70,9 @@ plt.ylim(lims)
 _ = plt.plot(lims, lims)
 plt.show()
 # -------
-# Save model
-with open('model.pickle', 'wb') as f:
-    pickle.dump(dnn_model, f)
+# Save dnn model to a local file
+directory = os.getcwd()
+dnn_model.save(f"{directory}/models")
 # -----tests---
 test1_res = dnn_model.predict([7, 7, 7, 7, 7,7])
 print(f"Test 7, 7, 7, 7, 7,7 results: {test1_res}")
