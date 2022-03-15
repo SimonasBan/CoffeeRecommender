@@ -1,32 +1,29 @@
-from flask import Flask, jsonify
-from flask_restful import Api, Resource, reqparse
-import pickle
 from tensorflow import keras
 import numpy as np
 import json
 import os
+from flask import Flask, request
+from flask import Flask, jsonify
+import json
 
+# create the Flask app
 app = Flask(__name__)
-api = Api(app)
 
-# Create parser for the payload data
-parser = reqparse.RequestParser()
-parser.add_argument('data')
-
-# Define how the api will respond to the post requests
-class IrisClassifier(Resource):
-    def post(self):
-        args = parser.parse_args()
-        X = np.array(json.loads(args['data']))
-        prediction = model.predict(X)
-        return jsonify(prediction.tolist())
-
-api.add_resource(IrisClassifier, '/iris')
+@app.route('/coffee-points', methods=['POST'])
+def json_example():
+    # Get post data
+    data = request.json
+    request_data = json.loads(data)
+    # Convert post data into an array for the dnn model
+    X = np.array(request_data['values'])
+    # Predict results based on the model
+    prediction = model.predict(X)
+    return jsonify(prediction.tolist())
 
 
 if __name__ == '__main__':
     # Load Coffee recommender DNN model
     directory = os.getcwd()
     model = keras.models.load_model(f"{directory}/models")
-
-    app.run(debug=True)
+    # run app in debug mode on port 5000
+    app.run(debug=True, port=5000)
