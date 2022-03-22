@@ -34,6 +34,7 @@ test_labels = test_features.pop('Cupper.Points')
 normalizer = tf.keras.layers.Normalization(axis=-1)
 normalizer.adapt(np.array(train_features))
 #----- Output clipper
+from tensorflow.keras import backend
 def clip(input, maxx, minn):
     return backend.clip(input, minn, maxx)
 # -------
@@ -91,3 +92,5 @@ test6_res = dnn_model.predict([7, 7, 7, 7, 9, 7])
 print(f"Test 7, 7, 7, 7, 9, 7 results: {test6_res}")
 test7_res = dnn_model.predict([7, 7, 7, 7, 7, 9])
 print(f"Test 7, 7, 7, 7, 7, 9 results: {test7_res}")
+test8_res = dnn_model.predict([10, 10, 10, 10, 10, 10])
+print(f"Test 10, 10, 10, 10, 10, 10 results: {test8_res}")
