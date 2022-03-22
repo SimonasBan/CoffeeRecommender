@@ -5,7 +5,7 @@ from sklearn import preprocessing
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers
-import pickle
+from tensorflow.keras import backend
 import os
 # -------
 df = pd.read_csv('arabica_data_cleaned.csv')
@@ -33,13 +33,17 @@ test_labels = test_features.pop('Cupper.Points')
 # -------
 normalizer = tf.keras.layers.Normalization(axis=-1)
 normalizer.adapt(np.array(train_features))
+#----- Output clipper
+from tensorflow.keras import backend
+def clip(input, maxx, minn):
+    return backend.clip(input, minn, maxx)
 # -------
 def build_and_compile_model(norm):
   model = keras.Sequential([
       norm,
       layers.Dense(64, activation='relu'),
-      layers.Dense(64, activation='relu'),
-      layers.Dense(1)
+      layers.Dense(1),
+      layers.Lambda(clip, output_shape="sigmoid", arguments={'maxx': 10, 'minn': 0})
   ])
 
   model.compile(loss='mean_absolute_error',
@@ -88,3 +92,5 @@ test6_res = dnn_model.predict([7, 7, 7, 7, 9, 7])
 print(f"Test 7, 7, 7, 7, 9, 7 results: {test6_res}")
 test7_res = dnn_model.predict([7, 7, 7, 7, 7, 9])
 print(f"Test 7, 7, 7, 7, 7, 9 results: {test7_res}")
+test8_res = dnn_model.predict([10, 10, 10, 10, 10, 10])
+print(f"Test 10, 10, 10, 10, 10, 10 results: {test8_res}")

@@ -1,4 +1,5 @@
 from tensorflow import keras
+from tensorflow.keras import backend
 import numpy as np
 import json
 import os
@@ -15,7 +16,7 @@ def json_example():
     data = request.json
     request_data = json.loads(data)
     # Convert post data into an array for the dnn model
-    X = np.array(request_data['values'])
+    X = np.array(request_data['Values'])
     # Predict results based on the model
     prediction = model.predict(X)
     return jsonify(prediction.tolist())
