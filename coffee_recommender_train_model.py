@@ -94,3 +94,59 @@ test7_res = dnn_model.predict([7, 7, 7, 7, 7, 9])
 print(f"Test 7, 7, 7, 7, 7, 9 results: {test7_res}")
 test8_res = dnn_model.predict([10, 10, 10, 10, 10, 10])
 print(f"Test 10, 10, 10, 10, 10, 10 results: {test8_res}")
+# ---Neutral test results
+print("----Neutral test results----")
+neutral_arr = np.full(6,5)
+print(f"Test 5,5,5,5,5,5 results: {dnn_model.predict(neutral_arr)}")
+# -----Individual parameter tests
+print("----Individual parameter tests----")
+print("--------")
+print("----[0] element Aroma parameter tests----")
+for i in range(11):
+    temp_arr = np.full(6,5)
+    temp_arr[0] = i
+    print(f"Test with {temp_arr}. Result = {dnn_model.predict(temp_arr)}")
+print("--------")
+print("----[1] element Sweetness parameter tests----")
+for i in range(11):
+    temp_arr = np.full(6,5)
+    temp_arr[1] = i
+    print(f"Test with {temp_arr}. Result = {dnn_model.predict(temp_arr)}")
+print("--------")
+print("----[2] element Aftertaste parameter tests----")
+for i in range(11):
+    temp_arr = np.full(6,5)
+    temp_arr[2] = i
+    print(f"Test with {temp_arr}. Result = {dnn_model.predict(temp_arr)}")
+print("--------")
+print("----[3] element Acidity parameter tests----")
+for i in range(11):
+    temp_arr = np.full(6,5)
+    temp_arr[3] = i
+    print(f"Test with {temp_arr}. Result = {dnn_model.predict(temp_arr)}")
+print("--------")
+print("----[4] element Clean.Cup parameter tests----")
+for i in range(11):
+    temp_arr = np.full(6,5)
+    temp_arr[4] = i
+    print(f"Test with {temp_arr}. Result = {dnn_model.predict(temp_arr)}")
+print("--------")
+print("----[5] element Body parameter tests----")
+for i in range(11):
+    temp_arr = np.full(6,5)
+    temp_arr[5] = i
+    print(f"Test with {temp_arr}. Result = {dnn_model.predict(temp_arr)}")
+
+print("----Cobined parameter tests. Taste map----")
+print("--------")
+print("--------")
+# 'Aroma', 'Sweetness', 'Aftertaste', 'Acidity', 'Clean.Cup', 'Body',
+# --------with multiple parameters
+temp_arr = [5, 5, 7, 5, 3, 7]
+print(f"Test with {temp_arr}. Result = {dnn_model.predict(temp_arr)}")
+print("--------")
+print("--------")
+temp_arr = [10, 7, 8, 10, 8, 8]
+print(f"Test with {temp_arr}. Result = {dnn_model.predict(temp_arr)}")
+print("--------")
+print("--------")
