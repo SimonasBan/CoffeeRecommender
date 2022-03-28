@@ -150,3 +150,11 @@ temp_arr = [10, 7, 8, 10, 8, 8]
 print(f"Test with {temp_arr}. Result = {dnn_model.predict(temp_arr)}")
 print("--------")
 print("--------")
+temp_arr = [9, 9, 9, 8, 6, 8]
+print(f"Test with {temp_arr}. Result = {dnn_model.predict(temp_arr)}")
+print("--------")
+print("--------")
+temp_arr = [7, 7, 8, 4, 5, 8]
+print(f"Test with {temp_arr}. Result = {dnn_model.predict(temp_arr)}")
+print("--------")
+print("--------")
