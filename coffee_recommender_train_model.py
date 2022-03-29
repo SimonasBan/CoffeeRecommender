@@ -101,41 +101,88 @@ print(f"Test 5,5,5,5,5,5 results: {dnn_model.predict(neutral_arr)}")
 # -----Individual parameter tests
 print("----Individual parameter tests----")
 print("--------")
-print("----[0] element Aroma parameter tests----")
-for i in range(11):
-    temp_arr = np.full(6,5)
-    temp_arr[0] = i
-    print(f"Test with {temp_arr}. Result = {dnn_model.predict(temp_arr)}")
 print("--------")
-print("----[1] element Sweetness parameter tests----")
-for i in range(11):
-    temp_arr = np.full(6,5)
-    temp_arr[1] = i
-    print(f"Test with {temp_arr}. Result = {dnn_model.predict(temp_arr)}")
+def test_parameter(index, parameter_name):
+    print('Aroma Sweetness Aftertaste Acidity Clean.Cup Body')
+    print(f"----[{index}] element {parameter_name} parameter tests----")
+    predictions = []
+    for i in range(11):
+        temp_arr = np.full(6,5)
+        temp_arr[index] = i
+        temp_test_prediction = dnn_model.predict(temp_arr)
+        predictions.append(temp_test_prediction)
+        print(f"Test with {temp_arr}. Result = {temp_test_prediction}")
+
+    test_len = np.arange(0,11,1)
+    plt.scatter(test_len, predictions)
+    plt.xlabel(f"{parameter_name} parametrui suteikta reikšmė")
+    plt.ylabel('Išvestis')
+    plt.xlim([0,10])
+    plt.ylim([0,10])
+    plt.show()
+
+
+
+
+
+print("----Individual parameter tests----")
 print("--------")
-print("----[2] element Aftertaste parameter tests----")
-for i in range(11):
-    temp_arr = np.full(6,5)
-    temp_arr[2] = i
-    print(f"Test with {temp_arr}. Result = {dnn_model.predict(temp_arr)}")
-print("--------")
-print("----[3] element Acidity parameter tests----")
-for i in range(11):
-    temp_arr = np.full(6,5)
-    temp_arr[3] = i
-    print(f"Test with {temp_arr}. Result = {dnn_model.predict(temp_arr)}")
-print("--------")
-print("----[4] element Clean.Cup parameter tests----")
-for i in range(11):
-    temp_arr = np.full(6,5)
-    temp_arr[4] = i
-    print(f"Test with {temp_arr}. Result = {dnn_model.predict(temp_arr)}")
-print("--------")
-print("----[5] element Body parameter tests----")
-for i in range(11):
-    temp_arr = np.full(6,5)
-    temp_arr[5] = i
-    print(f"Test with {temp_arr}. Result = {dnn_model.predict(temp_arr)}")
+# 'Aroma Sweetness Aftertaste Acidity Clean.Cup Body'
+# test_parameter(0,'Aroma')
+# test_parameter(1,'Sweetness')
+# test_parameter(2,'Aftertaste')
+test_parameter(3,'Acidity')
+# test_parameter(4,'Clean Cup')
+# test_parameter(5,'Body')
+
+# print("----[0] element Aroma parameter tests----")
+# Aroma_predictions = []
+# for i in range(11):
+#     temp_arr = np.full(6,5)
+#     temp_arr[0] = i
+#     temp_test_prediction = dnn_model.predict(temp_arr)
+#     Aroma_predictions.append(temp_test_prediction)
+#     print(f"Test with {temp_arr}. Result = {temp_test_prediction}")
+
+# test_len = np.arange(0,11,1)
+# plt.scatter(test_len, Aroma_predictions)
+# plt.xlabel('True Values [Cupper points]')
+# plt.ylabel('Predictions [Cupper points]')
+# lims = [0, 10]
+# plt.xlim(lims)
+# plt.ylim(lims)
+# _ = plt.plot(lims, lims)
+# plt.show()
+# print("--------")
+# print("----[1] element Sweetness parameter tests----")
+# for i in range(11):
+#     temp_arr = np.full(6,5)
+#     temp_arr[1] = i
+#     print(f"Test with {temp_arr}. Result = {dnn_model.predict(temp_arr)}")
+# print("--------")
+# print("----[2] element Aftertaste parameter tests----")
+# for i in range(11):
+#     temp_arr = np.full(6,5)
+#     temp_arr[2] = i
+#     print(f"Test with {temp_arr}. Result = {dnn_model.predict(temp_arr)}")
+# print("--------")
+# print("----[3] element Acidity parameter tests----")
+# for i in range(11):
+#     temp_arr = np.full(6,5)
+#     temp_arr[3] = i
+#     print(f"Test with {temp_arr}. Result = {dnn_model.predict(temp_arr)}")
+# print("--------")
+# print("----[4] element Clean.Cup parameter tests----")
+# for i in range(11):
+#     temp_arr = np.full(6,5)
+#     temp_arr[4] = i
+#     print(f"Test with {temp_arr}. Result = {dnn_model.predict(temp_arr)}")
+# print("--------")
+# print("----[5] element Body parameter tests----")
+# for i in range(11):
+#     temp_arr = np.full(6,5)
+#     temp_arr[5] = i
+#     print(f"Test with {temp_arr}. Result = {dnn_model.predict(temp_arr)}")
 
 print("----Cobined parameter tests. Taste map----")
 print("--------")
@@ -147,6 +194,30 @@ print(f"Test with {temp_arr}. Result = {dnn_model.predict(temp_arr)}")
 print("--------")
 print("--------")
 temp_arr = [10, 7, 8, 10, 8, 8]
+print(f"Test with {temp_arr}. Result = {dnn_model.predict(temp_arr)}")
+print("--------")
+print("--------")
+temp_arr = [9, 9, 9, 8, 6, 8]
+print(f"Test with {temp_arr}. Result = {dnn_model.predict(temp_arr)}")
+print("--------")
+print("--------")
+temp_arr = [7, 7, 8, 4, 5, 8]
+print(f"Test with {temp_arr}. Result = {dnn_model.predict(temp_arr)}")
+print("--------")
+print("--------")
+temp_arr = [8, 7, 8, 7, 8, 8]
+print(f"Test with {temp_arr}. Result = {dnn_model.predict(temp_arr)}")
+print("--------")
+print("--------")
+temp_arr = [9, 7, 8, 5, 8, 9]
+print(f"Test with {temp_arr}. Result = {dnn_model.predict(temp_arr)}")
+print("--------")
+print("--------")
+temp_arr = [5,5,5,10,5,5]
+print(f"Test with {temp_arr}. Result = {dnn_model.predict(temp_arr)}")
+print("--------")
+print("--------")
+temp_arr = [5,5,5,10,5,10]
 print(f"Test with {temp_arr}. Result = {dnn_model.predict(temp_arr)}")
 print("--------")
 print("--------")
