@@ -64,7 +64,7 @@ print(test_results['dnn_model'])
 # ---draw predictions plot-----
 test_predictions = dnn_model.predict(test_features).flatten()
 
-# a = plt.axes(aspect='equal')
+a = plt.axes(aspect='equal')
 plt.scatter(test_labels, test_predictions)
 plt.xlabel('True Values [Cupper points]')
 plt.ylabel('Predictions [Cupper points]')
@@ -108,20 +108,17 @@ def test_parameter(index, parameter_name):
     predictions = []
     for i in range(11):
         temp_arr = np.full(6,5)
-        temp_arr[0] = i
+        temp_arr[index] = i
         temp_test_prediction = dnn_model.predict(temp_arr)
         predictions.append(temp_test_prediction)
         print(f"Test with {temp_arr}. Result = {temp_test_prediction}")
 
     test_len = np.arange(0,11,1)
-    a = plt.axes(None)
     plt.scatter(test_len, predictions)
     plt.xlabel(f"{parameter_name} parametrui suteikta reikšmė")
     plt.ylabel('Išvestis')
-    lims = [0, 10]
-    plt.xlim(lims)
-    plt.ylim(lims)
-    _ = plt.plot(lims, lims)
+    plt.xlim([0,10])
+    plt.ylim([0,10])
     plt.show()
 
 
@@ -131,8 +128,12 @@ def test_parameter(index, parameter_name):
 print("----Individual parameter tests----")
 print("--------")
 # 'Aroma Sweetness Aftertaste Acidity Clean.Cup Body'
-test_parameter(0,'Aroma')
-test_parameter(1,'Sweetness')
+# test_parameter(0,'Aroma')
+# test_parameter(1,'Sweetness')
+# test_parameter(2,'Aftertaste')
+test_parameter(3,'Acidity')
+# test_parameter(4,'Clean Cup')
+# test_parameter(5,'Body')
 
 # print("----[0] element Aroma parameter tests----")
 # Aroma_predictions = []
@@ -201,6 +202,22 @@ print(f"Test with {temp_arr}. Result = {dnn_model.predict(temp_arr)}")
 print("--------")
 print("--------")
 temp_arr = [7, 7, 8, 4, 5, 8]
+print(f"Test with {temp_arr}. Result = {dnn_model.predict(temp_arr)}")
+print("--------")
+print("--------")
+temp_arr = [8, 7, 8, 7, 8, 8]
+print(f"Test with {temp_arr}. Result = {dnn_model.predict(temp_arr)}")
+print("--------")
+print("--------")
+temp_arr = [9, 7, 8, 5, 8, 9]
+print(f"Test with {temp_arr}. Result = {dnn_model.predict(temp_arr)}")
+print("--------")
+print("--------")
+temp_arr = [5,5,5,10,5,5]
+print(f"Test with {temp_arr}. Result = {dnn_model.predict(temp_arr)}")
+print("--------")
+print("--------")
+temp_arr = [5,5,5,10,5,10]
 print(f"Test with {temp_arr}. Result = {dnn_model.predict(temp_arr)}")
 print("--------")
 print("--------")
